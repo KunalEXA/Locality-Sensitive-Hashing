@@ -5,9 +5,19 @@ def kShingles(doc, k):
 # word shingles
 def wordShingles(doc, k):
 	from nltk.corpus import stopwords
-	words = doc.split()
-	word_shingles = [words[i:i+k] for i in range(len(words) - k + 1) if words[i].lower() in stopwords.words('english')]
-	return [" ".join(word_shingles[i]) for i in range(len(word_shingles))]
+	import binascii
+	# Split the document in space delimited words 
+	words = [x.lower() for x in doc.split(" ")]
+	word_shingles = set()
+	for i in range(len(words) - k + 1):
+		if words[i] in stopwords.words('english'):
+			# Construct the shingle
+			shingle = " ".join(words[i:i+k])
+			shingle = shingle.encode("ascii")
+			# Hash shingle using CRC32 and add it to the shingles set
+			crc = binascii.crc32(shingle) & 0xffffffff
+			word_shingles.add(crc)
+	return word_shingles
 	
 # Jaccard Similarity
 def jaccardSimilarity(list1, list2):
