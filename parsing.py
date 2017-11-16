@@ -46,4 +46,29 @@ file = open("word_dictionary.txt", 'w')
 for item in word_dict:
 	file.write("%s\n" % item)
 file.close()
+<<<<<<< HEAD
+
+word_index_dict = {k : v for v, k in enumerate(word_dict)}
+N = len(word_dict)
+count = 1
+with open('input_final.csv', 'w', newline='') as csvfile:
+	docwriter = csv.writer(csvfile, delimiter=',')
+	for _, value in preprocessed_input.items():
+		value = value.lower()
+		trans_table = value.maketrans('', '', punctuation)
+		value = value.translate(trans_table)
+		word_list = value.split()
+		doc_freq = [0]*N
+		for word in word_list:
+			index = word_index_dict[word]
+			doc_freq[index] += 1
+		count += 1
+		docwriter.writerow(["document_" + str(count)] + doc_freq)
+		if count == 100:
+			break;
+	
+	
+	
+=======
     
+>>>>>>> parent of 7683daf... input in CSV format
