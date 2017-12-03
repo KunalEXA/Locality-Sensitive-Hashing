@@ -57,23 +57,23 @@ word_index_dict = {k : v for v, k in enumerate(word_dict)}
 N = len(word_dict)
 count = 1
 sample = 100
-with open('input_final.csv', 'w', newline='') as csvfile:
-	# docwriter = csv.writer(csvfile, delimiter=',')
-	file = open("data_for_random_projections.txt", 'w')
-	for _, value in preprocessed_input.items():
-		value = value.lower()
-		trans_table = value.maketrans('', '', punctuation)
-		value = value.translate(trans_table)
-		word_list = value.split()
-		doc_freq = [0]*N
-		for word in word_list:
-			index = word_index_dict[word]
-			doc_freq[index] += 1
-		# docwriter.writerow(["document_" + str(count)] + doc_freq)
-		file.write(" ".join(str(j) for j in doc_freq))
-		if count == sample:
-			break;
-		count += 1
-		file.write('\n')
-	file.close()
+#with open('input_final.csv', 'w', newline='') as csvfile:
+# docwriter = csv.writer(csvfile, delimiter=',')
+file = open("data_for_random_projections.txt", 'w')
+for _, value in preprocessed_input.items():
+	value = value.lower()
+	trans_table = value.maketrans('', '', punctuation)
+	value = value.translate(trans_table)
+	word_list = value.split()
+	doc_freq = [0]*N
+	for word in word_list:
+		index = word_index_dict[word]
+		doc_freq[index] += 1
+	# docwriter.writerow(["document_" + str(count)] + doc_freq)
+	file.write(" ".join(str(j) for j in doc_freq))
+	if count == sample:
+		break;
+	count += 1
+	file.write('\n')
+file.close()
 	
