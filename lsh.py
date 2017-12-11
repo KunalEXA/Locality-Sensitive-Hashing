@@ -25,11 +25,13 @@ d = B.shape[1]
 #non linear solver to determine b and r
 start_time = time.time()
 d1 = 10
-d2 = 60
+d2 = 80
 P1 = 0.99
 P2 = 0.01
 p1 = (180-d1)/180
 p2 = (180-d2)/180
+
+# estimate b and r
 def equations(p):
     r, b = p
     return (1 - P1 - (1 - p1**r)**b, 1 - P2 - (1 - p2**r)**b)

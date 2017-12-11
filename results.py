@@ -4,7 +4,7 @@ import time
 import numpy as np
 
 
-"""
+
 text_file = "final_pre_processed.txt"
 text_file = open(text_file, "r")
 docs = text_file.read().split('\n')
@@ -17,9 +17,9 @@ Jsim_4_15 = shingling.jaccardSimilarity(shingles4, shingles15)
 Jsim_4_16 = shingling.jaccardSimilarity(shingles4, shingles16)
 print([Jsim_4_15, Jsim_4_16])
 # time comparision
-start_time = time.time()
+
 similarity_threshold = 0.20
-docs = docs[0:500]
+#docs = docs[0:500]
 N = len(docs)
 print(N)
 similar_docs = []
@@ -34,14 +34,14 @@ for i in np.arange(N):
 	similar_docs.append(cur_similar)
 	
 print (similar_docs[3], '\n', similar_docs[15])
-print("--- %s seconds ---" % (time.time() - start_time))
-"""
+
+
+'''
 start_time = time.time()
 input_file = "data_for_random_projections.txt"
 A=np.loadtxt(input_file)
 dim = A.shape[1]
 start_time = time.time()
-similarity_threshold = 0.20
 A = A[0:500,:]
 N =  A.shape[0]
 print(N)
@@ -54,11 +54,12 @@ def cosine_dis(a, b):
 similarity_threshold = 0.7
 for i in np.arange(N):
 	cur_similar = []
-	for j in np.arange(i+1, N):
+	for j in np.arange(N):
 		cur_similarity = cosine_dis(A[i,:], A[j,:])
 		if cur_similarity > similarity_threshold:
-			cur_similar.append(j)
+			cur_similar.append(j+1)
 	similar_docs.append(cur_similar)
 	
 print (similar_docs[3], '\n', similar_docs[15])
 print("--- %s seconds ---" % (time.time() - start_time))
+'''
